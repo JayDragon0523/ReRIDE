@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/NiftyDialogEffects" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/fonts" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/fragment/Fragment2.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/myclass/MyLocation.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/myclass/MyModel.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/myclass/MySync.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/system/MyApp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/system/MyService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/utils/RandomString.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/widget/LinearLayoutForAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/widget/LinearLayoutForListView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/reride/widget/LoadingDialog.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/dialog_loading.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/activity_common_shape.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/config_item_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/config_toggle_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/rank_progressbar_layerlist.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_loading.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item_rank_total.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/bigbike-NiftyDialogEffects" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/libs/NineOldAndroid-2.4.0.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/libs/NineOldAndroid-2.4.0.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/ColorUtils.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/Effectstype.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/NiftyDialogBuilder.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/BaseEffects.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/FadeIn.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/Fall.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/FlipH.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/FlipV.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/NewsPaper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/RotateBottom.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/RotateLeft.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/Shake.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/SideFall.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/SlideBottom.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/SlideLeft.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/SlideRight.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/SlideTop.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/java/com/example/niftydialog/effects/Slit.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/drawable/btn_press.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/drawable/btn_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/drawable/btn_unpress.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/drawable/dialog_bg.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/layout/dialog_layout.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/res" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-v11" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-v14" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-w360dp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-w480dp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-w500dp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-w600dp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values-w720dp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/niftydialog/src/main/res/values/dimens.xml" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

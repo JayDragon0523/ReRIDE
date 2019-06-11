@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.reride.fragment.Fragment2">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/app_theme_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content" >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/titlebar_cycling_userinfo"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/app_logo"
+            android:visibility="gone"
+            app:civ_border_color="#88ffffff"
+            app:civ_border_width="1dip" />
+
+        <ImageButton
+            android:id="@+id/titlebar_cycling_config"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/titlebar_config_selector" />
+
+        <RadioGroup
+            android:id="@+id/titlebar_cycling_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <RadioButton
+                android:id="@+id/titlebar_cycling_radiogroup_today"
+                style="@style/titlebar_radiogroup_radiobutton"
+                android:background="@drawable/titlebar_radiogroup_left_selector"
+                android:checked="true"
+                android:text="今日" />
+
+            <RadioButton
+                android:id="@+id/titlebar_cycling_radiogroup_once"
+                style="@style/titlebar_radiogroup_radiobutton"
+                android:background="@drawable/titlebar_radiogroup_center_selector"
+                android:text="单程" />
+
+            <RadioButton
+                android:id="@+id/titlebar_cycling_radiogroup_total"
+                style="@style/titlebar_radiogroup_radiobutton"
+                android:background="@drawable/titlebar_radiogroup_right_selector"
+                android:text="总程" />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <!--内嵌地图-->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/baidumap"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#F8F8FF">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fragment_cycling_speed_shape"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="145dip" >
+
+            <TextView
+                android:id="@+id/fragment_cycling_runstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:text="待出发中..."
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/fragment_cycling_block_three"
+                android:layout_width="35dip"
+                android:layout_height="10dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="13dip"
+                android:layout_marginTop="40dip"
+                android:background="#ff7bcc43"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/fragment_cycling_block_two"
+                android:layout_width="35dip"
+                android:layout_height="10dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="13dip"
+                android:layout_marginTop="51dip"
+                android:background="#bb7bcc43"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/fragment_cycling_block_one"
+                android:layout_width="35dip"
+                android:layout_height="10dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="13dip"
+                android:layout_marginTop="62dip"
+                android:background="#887bcc43"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/fragment_cycling_speednow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingTop="20dip"
+                android:shadowColor="#99000000"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="10"
+                android:text="0.0"
+                android:textColor="#7bcc43"
+                android:textSize="120sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:text="KM/H"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dip"
+            android:orientation="horizontal"
+            android:paddingBottom="15dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingTop="0dip" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dip"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/fragment_cycling_speed_label_right_shape"
+                    android:gravity="right"
+                    android:paddingBottom="3dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="3dip"
+                    android:text="均速"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/fragment_cycling_speedavg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="0.0"
+                    android:textColor="#ffffff"
+                    android:textSize="42sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/fragment_cycling_speed_label_left_shape"
+                    android:paddingBottom="3dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="3dip"
+                    android:text="极速"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/fragment_cycling_speedmax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="0.0"
+                    android:textColor="#ffffff"
+                    android:textSize="42sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="0dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dip"
+                    android:background="@drawable/fragment_cycling_panel_head_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_mileage_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="总里程"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="KM"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dip"
+                    android:background="@drawable/fragment_cycling_panel_body_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_mileage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="0.0"
+                        android:textColor="#95eaff"
+                        android:textSize="42sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dip"
+                    android:background="@drawable/fragment_cycling_panel_head_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="骑行时间"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_totaltime_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="秒钟"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dip"
+                    android:background="@drawable/fragment_cycling_panel_body_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_totaltime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="00:00"
+                        android:textColor="#95eaff"
+                        android:textSize="38sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_cycling_today_once"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="0dip"
+            android:paddingLeft="0dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dip"
+                    android:background="@drawable/fragment_cycling_panel_head_shape"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="能量"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="KCAL"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dip"
+                    android:background="@drawable/fragment_cycling_panel_body_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_calorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="0"
+                        android:textColor="#95eaff"
+                        android:textSize="36sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dip"
+                    android:background="@drawable/fragment_cycling_panel_head_shape"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="爬坡"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/fragment_cycling_tool_location"
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dip"
+                        android:background="@drawable/cycling_location" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="M"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dip"
+                    android:background="@drawable/fragment_cycling_panel_body_shape"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_altitude_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:paddingBottom="2dip"
+                        android:text=""
+                        android:textColor="#95eaff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_altitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="0"
+                        android:textColor="#95eaff"
+                        android:textSize="36sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_cycling_once_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dip"
+                    android:background="@drawable/fragment_cycling_panel_head_shape"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="单程名称"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dip"
+                    android:background="@drawable/fragment_cycling_panel_body_shape"
+                    android:padding="10dip" >
+
+                    <TextView
+                        android:id="@+id/fragment_cycling_once_title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment_cycling_tool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:padding="5dip" >
+
+            <!--第一页-->
+            <com.spark.submitbutton.SubmitButton
+                android:id="@+id/start_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="开始"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:sub_btn_duration="4000" />
+            <ng.max.slideview.SlideView
+                android:id="@+id/slider_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                app:sv_buttonBackgroundColor="@android:color/white"
+                app:sv_buttonImage="@drawable/slide"
+                app:sv_slideBackgroundColor="@drawable/slide_button_bg_selector"
+                app:sv_slideText="滑动以结束"
+                app:sv_buttonImageDisabled="@drawable/ic_settings_grey600_24dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+</FrameLayout>

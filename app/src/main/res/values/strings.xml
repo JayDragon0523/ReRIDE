@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Re:RIDE</string>
+    <string name="me">我的</string>
+    <string name="title_home">排行榜</string>
+    <string name="title_cycling">运动</string>
+    <string name="title_goods">好货</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

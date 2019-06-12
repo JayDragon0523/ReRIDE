@@ -11,7 +11,6 @@ import android.util.Log;
 
 import com.example.reride.myclass.MyConfig;
 import com.example.reride.myclass.MyController;
-import com.example.reride.myclass.MyFloat;
 import com.example.reride.myclass.MyLocation;
 import com.example.reride.myclass.MySync;
 
@@ -27,7 +26,6 @@ public class MyService extends Service {
 	
 	public MyController mCont;  // 控制器类
 	public MyLocation mLoc;  // 定位类
-	public MyFloat mFloat;  // 浮动窗口类
 	public MySync mSync;  // 同步类
 	
 	// 定义内容类继承Binder
@@ -60,14 +58,13 @@ public class MyService extends Service {
 		
 		createController();
 		mLoc = new MyLocation(this, mCont);
-		mFloat = new MyFloat(this, myApp);
 		mSync = new MySync(this, myApp);
 		
 		if( mCont.runMode== MyConfig.MODE_GPS ){
 			mLoc.start();
 		}
 		if( myApp.user.lastRunTime>myApp.user.lastSyncTime ){
-			mSync.start();
+			//mSync.start();
 		}
 	}
 
@@ -96,7 +93,6 @@ public class MyService extends Service {
 		unregisterReceiver(hpReceiver);
 		destroyController();
 		mLoc.stop();
-		mFloat.removeFloatView();
 		mSync.release();
 		myApp.GPSOpenTip = false;  // 初始化GPS打开提示
 	}

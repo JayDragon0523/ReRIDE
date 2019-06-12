@@ -84,21 +84,9 @@ public class MyController {
 		myConfig = new MyConfig(context);
 		// 初始化存储的里程数据
 		Cursor cursor = null;
-		// 今日
-		cursor = myModel.todayRead( user.uid );
-		while( cursor.moveToNext() ){
-			todayDate = cursor.getString(cursor.getColumnIndex("date"));
-			todaySpeedMax = cursor.getFloat(cursor.getColumnIndex("speedmax"));
-			todaySpeedAvg = cursor.getFloat(cursor.getColumnIndex("speedavg"));
-			todayMileage = cursor.getFloat(cursor.getColumnIndex("mileage"));
-			todayTotalTime = cursor.getLong(cursor.getColumnIndex("totaltime"));
-			todayAltitudeMax = cursor.getFloat(cursor.getColumnIndex("altitudemax"));
-			todayAltitudeMin = cursor.getFloat(cursor.getColumnIndex("altitudemin"));
-		}
-		cursor.close();
-		// 单程
+		// 结束
 		cursor = myModel.onceGetChecked( user.uid );
-		while( cursor.moveToNext() ){
+		/*while( cursor.moveToNext() ){
 			onceId = cursor.getString(cursor.getColumnIndex("id"));
 			onceTitle = cursor.getString(cursor.getColumnIndex("title"));
 			onceSpeedMax = cursor.getFloat(cursor.getColumnIndex("speedmax"));
@@ -108,7 +96,7 @@ public class MyController {
 			onceAltitudeMax = cursor.getFloat(cursor.getColumnIndex("altitudemax"));
 			onceAltitudeMin = cursor.getFloat(cursor.getColumnIndex("altitudemin"));
 		}
-		cursor.close();
+		cursor.close();*/
 		// 全程
 		cursor = myModel.totalRead( user.uid );
 		while( cursor.moveToNext() ){
@@ -118,6 +106,7 @@ public class MyController {
 			totalTotalTime = cursor.getLong(cursor.getColumnIndex("totaltime"));
 		}
 		cursor.close();
+
 		// 初始化配置数据
 		maxVolume = myConfig.maxVolume;
 		minVolume = myConfig.minVolume;
@@ -226,33 +215,26 @@ public class MyController {
 				}
 				// 总里程
 				todayMileage += (speedNow / 3600) * ((float)MyLocation.DELAY_MILLIS / 1000.0);  // 单位:千米
-				if (onceId != null)
-					onceMileage += (speedNow / 3600) * (MyLocation.DELAY_MILLIS / 1000);  // 单位:千米
+				onceMileage += (speedNow / 3600) * (MyLocation.DELAY_MILLIS / 1000);  // 单位:千米
 				totalMileage += (speedNow / 3600) * (MyLocation.DELAY_MILLIS / 1000);  // 单位:千米
 				// 骑行时间
 				todayTotalTime += (long) MyLocation.DELAY_MILLIS;  // 单位:微秒
-				if (onceId != null)
-					onceTotalTime += (long) MyLocation.DELAY_MILLIS;  // 单位:微秒
+				onceTotalTime += (long) MyLocation.DELAY_MILLIS;  // 单位:微秒
 				totalTotalTime += (long) MyLocation.DELAY_MILLIS;  // 单位:微秒
 				// 平均时速
 				todaySpeedAvg = todayMileage / todayTotalTime * 1000 * 3600;
-				if (onceId != null)
-					onceSpeedAvg = onceMileage / onceTotalTime * 1000 * 3600;
+				onceSpeedAvg = onceMileage / onceTotalTime * 1000 * 3600;
 				totalSpeedAvg = totalMileage / totalTotalTime * 1000 * 3600;
 				// 高度
 				if (altitude != MyLocation.ALTITUDE_INIT) {
 					// 今日
 					if (altitude > todayAltitudeMax)
 						todayAltitudeMax = altitude;
+						onceAltitudeMax = altitude;
+
 					if (altitude < todayAltitudeMin)
 						todayAltitudeMin = altitude;
-					// 单程
-					if (onceId != null) {
-						if (altitude > onceAltitudeMax)
-							onceAltitudeMax = altitude;
-						if (altitude < onceAltitudeMin)
-							onceAltitudeMin = altitude;
-					}
+						onceAltitudeMin = altitude;
 				}
 				// 最后运行时间
 				user.lastRunTime = Calendar.getInstance().getTimeInMillis();

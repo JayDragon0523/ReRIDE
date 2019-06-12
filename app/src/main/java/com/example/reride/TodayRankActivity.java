@@ -68,7 +68,7 @@ public class TodayRankActivity extends AppCompatActivity {
         mileageProgressBar = (ProgressBar) findViewById(R.id.activity_rank_mileage_progressbar);
         speedAvgProgressBar = (ProgressBar) findViewById(R.id.activity_rank_speedavg_progressbar);
 
-        loadServerData();
+        //loadServerData();
     }
 
     private void loadServerData() {
@@ -132,9 +132,9 @@ public class TodayRankActivity extends AppCompatActivity {
             mileageNote.setText("同志仍须努力");
             mp = 100 - mp;
         } else {
-            mileagePercent.setTextColor(getResources().getColor(R.color.red));
-            mileageDesc.setTextColor(getResources().getColor(R.color.red));
-            mileageNote.setTextColor(getResources().getColor(R.color.red));
+            mileagePercent.setTextColor(getResources().getColor(R.color.colorPrimary));
+            mileageDesc.setTextColor(getResources().getColor(R.color.colorPrimary));
+            mileageNote.setTextColor(getResources().getColor(R.color.colorPrimary));
             mileageDesc.setText("骑的远");
             if( mp < 70 )
                 mileageNote.setText("人送外号骑行小钢炮");
@@ -171,9 +171,9 @@ public class TodayRankActivity extends AppCompatActivity {
             speedAvgNote.setText("骑的慢也是骑");
             sp = 100 - sp;
         } else {
-            speedAvgPercent.setTextColor(getResources().getColor(R.color.red));
-            speedAvgDesc.setTextColor(getResources().getColor(R.color.red));
-            speedAvgNote.setTextColor(getResources().getColor(R.color.red));
+            speedAvgPercent.setTextColor(getResources().getColor(R.color.colorPrimary));
+            speedAvgDesc.setTextColor(getResources().getColor(R.color.colorPrimary));
+            speedAvgNote.setTextColor(getResources().getColor(R.color.colorPrimary));
             speedAvgDesc.setText("骑的快");
             if( sp < 70 )
                 speedAvgNote.setText("一直在超车，偶尔被超越");

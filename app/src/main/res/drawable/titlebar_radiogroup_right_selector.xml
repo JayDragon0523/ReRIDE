@@ -8,8 +8,8 @@
 			<shape>
 				<stroke  
 	                android:width="1dip"  
-	                android:color="#7bcc43" />
-			    <solid android:color="#7bcc43"/>
+	                android:color="#FF00C68B" />
+			    <solid android:color="#FF00C68B"/>
 			    <corners 
 			        android:bottomLeftRadius="0dip" 
 			        android:bottomRightRadius="15dip" 
@@ -26,8 +26,8 @@
 			<shape>
 				<stroke  
 	                android:width="1dip"  
-	                android:color="#7bcc43" />
-			    <solid android:color="#7bcc43"/>
+	                android:color="#FF00C68B" />
+			    <solid android:color="#FF00C68B"/>
 			    <corners 
 			        android:bottomLeftRadius="0dip" 
 			        android:bottomRightRadius="15dip" 
@@ -44,7 +44,7 @@
 			<shape>
 				<stroke  
 	                android:width="1dip"  
-	                android:color="#7bcc43" />
+	                android:color="#FF00C68B" />
 			    <solid android:color="#272e38"/>
 			    <corners 
 			        android:bottomLeftRadius="0dip" 

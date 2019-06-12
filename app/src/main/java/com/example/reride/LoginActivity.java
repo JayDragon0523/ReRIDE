@@ -1,6 +1,7 @@
 package com.example.reride;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.reride.bean.User;
 import com.example.reride.myclass.MyConfig;
+import com.example.reride.myclass.MyController;
+import com.example.reride.myclass.MyModel;
 import com.example.reride.system.MyApp;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -27,6 +30,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
+import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -39,7 +43,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static Tencent mTencent;
-    private static String mAppid = "1104724019";  // 腾讯APP_ID
+    private static String mAppid = "101616770";  // 腾讯APP_ID
 
     private LinearLayout qq;
     private CircleImageView avatarView;
@@ -48,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
     private MyApp myApp;
     private User user;
     private BitmapUtils bitmapUtils;
-    //private DataManager dataManager;
+    private MyModel dataManager;
+    private int cnt = 0;
+    private String openid = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +62,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mTencent = Tencent.createInstance(mAppid, getApplicationContext());
+        Log.e(TAG, "onCreate:mTencent: "+mTencent );
         myApp = (MyApp)this.getApplication();
         user = myApp.user;
         bitmapUtils = new BitmapUtils(getApplicationContext());
         bitmapUtils.configDefaultLoadingImage(R.drawable.app_logo);
-        //dataManager = new DataManager(getApplicationContext());
+        dataManager = new MyModel(getApplicationContext());
 
         ImageButton back = (ImageButton)findViewById(R.id.titlebar_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -71,102 +78,118 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         qq = (LinearLayout)findViewById(R.id.activity_login_qq);
-        /*qq.setOnClickListener(new View.OnClickListener() {
+        qq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginQQ();
+                mTencent.login(LoginActivity.this, "all", new BaseUiListener());
             }
-        });*/
+        });
 
         avatarView = (CircleImageView)findViewById(R.id.activity_login_avatar);
         nicknameView = (TextView)findViewById(R.id.activity_login_nickname);
     }
 
-    /*@Override
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Tencent.onActivityResultData(requestCode, resultCode, data, new BaseUiListener());
+
+        if(requestCode == Constants.REQUEST_API) {
+            if(resultCode == Constants.REQUEST_LOGIN) {
+                Tencent.handleResultData(data, new BaseUiListener());
+            }
+        }
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         dataManager.release();
     }
 
-    private void loginQQ() {
-        IUiListener listener = new IUiListener() {
+    private class BaseUiListener implements IUiListener {
 
-            @Override
-            public void onCancel() {
+        @Override
+        public void onCancel() {
+            Toast.makeText(LoginActivity.this,"取消登陆",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(UiError arg0) {
+            Toast.makeText(getApplicationContext(), "onError", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onComplete(Object arg0) {
+            JSONObject response = (JSONObject)arg0;
+            Log.e(TAG, "response: " + response.toString());
+            try {
+                if(openid != response.getString("openid")) cnt++;
+                user.uid = cnt;
+                user.openId = response.getString("openid");
+                openid = user.openId;
+                user.accessToken = response.getString("access_token");
+                user.expiresIn = response.getString("expires_in");
+                user.save();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            @Override
-            public void onError(UiError arg0) {
-                Log.i(TAG, arg0.errorMessage);
-            }
+            dialog = ProgressDialog.show(LoginActivity.this, null, "登录中...");
 
-            @Override
-            public void onComplete(Object arg0) {
-                JSONObject response = (JSONObject)arg0;
-                //Log.e(TAG, "response: " + response.toString());
-                try {
-                    user.openId = response.getString("openid");
-                    user.accessToken = response.getString("access_token");
-                    user.expiresIn = response.getString("expires_in");
-                    user.save();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            // 获取一些QQ的基本信息，比如昵称，头像
+            QQToken qqToken = mTencent.getQQToken();
+            UserInfo info = new UserInfo(getApplicationContext(), qqToken);
+
+            info.getUserInfo( new IUiListener() {
+
+                @Override
+                public void onCancel() {
+                    dialog.dismiss();
                 }
 
-                dialog = ProgressDialog.show(LoginActivity.this, null, "登录中...");
+                @Override
+                public void onError(UiError arg0) {
+                    Log.i(TAG, arg0.errorMessage);
+                    dialog.dismiss();
+                }
 
-                // 获取一些QQ的基本信息，比如昵称，头像
-                QQToken qqToken = mTencent.getQQToken();
-                UserInfo info = new UserInfo(getApplicationContext(), qqToken);
-
-                info.getUserInfo( new IUiListener() {
-
-                    @Override
-                    public void onCancel() {
-                        dialog.dismiss();
-                    }
-
-                    @Override
-                    public void onError(UiError arg0) {
-                        Log.i(TAG, arg0.errorMessage);
-                        dialog.dismiss();
-                    }
-
-                    @Override
-                    public void onComplete(Object arg0) {
-                        JSONObject response = (JSONObject)arg0;
-                        //Log.e(TAG, "response: " + response.toString());
-                        try {
-                            user.nickname = response.getString("nickname");
-                            user.avatarUrl = response.getString("figureurl_qq_2");
-                            user.gender = response.getString("gender");
-                            user.province = response.getString("province");
-                            user.city = response.getString("city");
-                            user.save();
-                            bitmapUtils.display(avatarView, user.avatarUrl, new BitmapLoadCallBack<View>() {
-                                @Override
-                                public void onLoadCompleted(View arg0, String arg1, Bitmap arg2, BitmapDisplayConfig arg3, BitmapLoadFrom arg4) {
-                                    ((CircleImageView)arg0).setImageBitmap(arg2);
-                                    nicknameView.setText(user.nickname);
-                                    if( user.gender.equals("") || user.province.equals("") ){
-                                        Toast.makeText(getApplicationContext(), "QQ资料不完整，请完善后再试", Toast.LENGTH_LONG).show();
-                                        return;
-                                    }
-                                    LoginServer();
+                @Override
+                public void onComplete(Object arg0) {
+                    JSONObject response = (JSONObject)arg0;
+                    Log.e(TAG, "response: " + response.toString());
+                    try {
+                        user.nickname = response.getString("nickname");
+                        user.avatarUrl = response.getString("figureurl_qq_2");
+                        user.gender = response.getString("gender");
+                        user.province = response.getString("province");
+                        user.city = response.getString("city");
+                        user.save();
+                        bitmapUtils.display(avatarView, user.avatarUrl, new BitmapLoadCallBack<View>() {
+                            @Override
+                            public void onLoadCompleted(View arg0, String arg1, Bitmap arg2, BitmapDisplayConfig arg3, BitmapLoadFrom arg4) {
+                                ((CircleImageView)arg0).setImageBitmap(arg2);
+                                nicknameView.setText(user.nickname);
+                                if( user.gender.equals("") || user.province.equals("") ){
+                                    Toast.makeText(getApplicationContext(), "QQ资料不完整，请完善后再试", Toast.LENGTH_LONG).show();
+                                    return;
                                 }
-                                @Override
-                                public void onLoadFailed(View arg0, String arg1, Drawable arg2) {
-                                    dialog.dismiss();
-                                }
-                            });
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                                LoginServer();
+                            }
+                            @Override
+                            public void onLoadFailed(View arg0, String arg1, Drawable arg2) {
+                                dialog.dismiss();
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
-            }
-        };
-        mTencent.login(LoginActivity.this, "all", listener);
+                }
+            });
+        }
+
     }
 
     private void LoginServer(){
@@ -242,5 +265,5 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-    }*/
+    }
 }

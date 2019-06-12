@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#036B9B</color>
+    <color name="colorPrimary">#FF00C68B</color>
+    <color name="colorPrimaryDark">#03A877</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">#00000000</color>
     <color name="red">#fa0000</color>
     <color name="wathet">#0ff</color>
     <color name="bottom">#545557</color>
-    <color name="slidebar">#86BD5F</color>
+    <color name="slidebar">#A1E9D3</color>
 </resources>

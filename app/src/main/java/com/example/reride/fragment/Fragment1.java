@@ -77,7 +77,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 if( user.uid==0 ){
-                    Toast.makeText(mainActivity.getApplicationContext(), "登陆后才能查看", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mainActivity.getApplicationContext(), "Please login first!", Toast.LENGTH_SHORT).show();
                     // 打开登陆窗口
                     Intent intent = new Intent();
                     intent.setClass(mainActivity.getApplicationContext(), LoginActivity.class);
@@ -95,7 +95,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 if( user.uid==0 ){
-                    Toast.makeText(mainActivity.getApplicationContext(), "登陆后才能查看", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mainActivity.getApplicationContext(), "Please login first!", Toast.LENGTH_SHORT).show();
                     // 打开登陆窗口
                     Intent intent = new Intent();
                     intent.setClass(mainActivity.getApplicationContext(), LoginActivity.class);
@@ -118,7 +118,7 @@ public class Fragment1 extends Fragment {
         if (id == 16908332) {
             Log.e(TAG, "onOptionsItemSelected: user:"+user );
             if( user.uid==0 ){
-                Toast.makeText(mainActivity.getApplicationContext(), "请先登陆", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mainActivity.getApplicationContext(), "Please login first!", Toast.LENGTH_SHORT).show();
                 // 打开登陆窗口
                 Intent intent = new Intent();
                 intent.setClass(mainActivity.getApplicationContext(), LoginActivity.class);

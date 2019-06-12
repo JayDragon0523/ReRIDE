@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    compileOptions.encoding = "GBK"
     defaultConfig {
         applicationId "com.example.reride"
         minSdkVersion 15
@@ -21,9 +22,6 @@ android {
             jniLibs.srcDirs = ['src/main/jniLibs']    //disable automatic ndk-build
         }
     }
-    compileOptions {
-        encoding "GBK"
-    }
 }
 
 dependencies {
@@ -36,6 +34,11 @@ dependencies {
     implementation 'com.github.MAXDeliveryNG:slideview:1.1.0'
     implementation 'com.leon:lsettingviewlibrary:1.7.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+        implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
+            // if you don't use android.app.Fragment you can exclude support for them
+            exclude module: "support-v13"
+        }
+        annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -43,4 +46,5 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/open_sdk_r6008_lite.jar')
     implementation files('libs/org.apache.http.legacy.jar')
+    implementation files('libs/SQLiteStudioRemote.jar')
 }

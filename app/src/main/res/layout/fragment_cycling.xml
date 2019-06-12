@@ -50,19 +50,19 @@
                 style="@style/titlebar_radiogroup_radiobutton"
                 android:background="@drawable/titlebar_radiogroup_left_selector"
                 android:checked="true"
-                android:text="今日" />
+                android:text="出发" />
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/titlebar_cycling_radiogroup_once"-->
+                <!--style="@style/titlebar_radiogroup_radiobutton"-->
+                <!--android:background="@drawable/titlebar_radiogroup_center_selector"-->
+                <!--android:text="结束" />-->
 
             <RadioButton
                 android:id="@+id/titlebar_cycling_radiogroup_once"
                 style="@style/titlebar_radiogroup_radiobutton"
-                android:background="@drawable/titlebar_radiogroup_center_selector"
-                android:text="单程" />
-
-            <RadioButton
-                android:id="@+id/titlebar_cycling_radiogroup_total"
-                style="@style/titlebar_radiogroup_radiobutton"
                 android:background="@drawable/titlebar_radiogroup_right_selector"
-                android:text="总程" />
+                android:text="结束" />
         </RadioGroup>
     </RelativeLayout>
 
@@ -70,7 +70,7 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:id="@+id/baidumap"
         android:gravity="center"
         android:orientation="vertical"
@@ -152,7 +152,7 @@
                 android:shadowDy="5"
                 android:shadowRadius="10"
                 android:text="0.0"
-                android:textColor="#7bcc43"
+                android:textColor="#FF00C68B"
                 android:textSize="120sp" />
 
             <TextView
@@ -273,7 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:text="总里程"
+                        android:text="里程"
                         android:textColor="#ffffff"
                         android:textSize="14sp"
                         android:textStyle="bold" />

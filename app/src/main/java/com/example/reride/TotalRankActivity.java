@@ -76,7 +76,7 @@ public class TotalRankActivity extends AppCompatActivity {
 
         rankNumber = (TextView) findViewById(R.id.activity_rank_number);
         rankMileage = (TextView) findViewById(R.id.activity_rank_mileage);
-        loadServerData();
+        //loadServerData();
 
     }
 
